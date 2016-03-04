@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304110752) do
+ActiveRecord::Schema.define(version: 20160304130645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,10 @@ ActiveRecord::Schema.define(version: 20160304110752) do
     t.boolean  "csharp",       default: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.integer  "junior_id"
   end
+
+  add_index "junior_profiles", ["junior_id"], name: "index_junior_profiles_on_junior_id", using: :btree
 
   create_table "juniors", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -54,4 +57,5 @@ ActiveRecord::Schema.define(version: 20160304110752) do
   add_index "juniors", ["email"], name: "index_juniors_on_email", unique: true, using: :btree
   add_index "juniors", ["reset_password_token"], name: "index_juniors_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "junior_profiles", "juniors"
 end

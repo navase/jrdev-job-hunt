@@ -26,6 +26,7 @@ class JuniorProfilesController < ApplicationController
   # POST /junior_profiles.json
   def create
     @junior_profile = JuniorProfile.new(junior_profile_params)
+    @junior_profile.junior_id = current_junior.id
 
     respond_to do |format|
       if @junior_profile.save
@@ -63,13 +64,14 @@ class JuniorProfilesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_junior_profile
-      @junior_profile = JuniorProfile.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_junior_profile
+    @junior_profile = JuniorProfile.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def junior_profile_params
-      params.fetch(:junior_profile, {})
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def junior_profile_params
+    params.require(:junior_profile).permit(:name, :city, :picture, :ruby, :rails,
+    :javascript, :node, :react, :jquery, :php, :java, :net, :cplusplus, :coffeescript, :csharp)
+  end
 end

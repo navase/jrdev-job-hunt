@@ -2,12 +2,22 @@ class CompanyProfilesController < ApplicationController
 before_action :authenticate_company!, only: [:create, :update, :destroy]
 
   def index
-    @company_profiles = CompanyProfile.all
+    company_profiles = CompanyProfile.all
+    render json:{
+      meta: {
+        company_profiles_count: company_profiles.count,
+        page: 0
+      },
+      company_profiles: company_profiles
+    }
   end
 
-  def show
-    @company_profile = CompanyProfile.find(params[:id])
-  end
+  # def show
+  #   company_profile = CompanyProfile.find(params[:id])
+  #   render json:{
+  #     company_profile: company_profile
+  #   }
+  # end
 
   def new
     # new profile has to be linked to current singed in company

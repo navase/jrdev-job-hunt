@@ -70,3 +70,1428 @@ ActiveRecord::NoDatabaseError (FATAL:  database "jrdevjobhunt-back_development" 
   Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
   Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
   Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (183.9ms)
+  [1m[36m (26.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (2.1ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateCompanies (20160304104439)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (29.0ms)[0m  [1mCREATE TABLE "companies" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  CREATE UNIQUE INDEX  "index_companies_on_email" ON "companies"  ("email")
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX  "index_companies_on_reset_password_token" ON "companies"  ("reset_password_token")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160304104439"]]
+  [1m[36m (6.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'companies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+
+
+Started GET "/" for ::1 at 2016-03-04 11:45:41 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/railties-4.2.5.1/lib/rails/templates/rails/welcome/index.html.erb (2.0ms)
+Completed 200 OK in 23ms (Views: 12.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-04 11:54:12 +0100
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/railties-4.2.5.1/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/companies/signup" for ::1 at 2016-03-04 11:54:20 +0100
+
+ActionController::RoutingError (No route matches [GET] "/companies/signup"):
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.6ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (11.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (125.6ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (80.9ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (173.2ms)
+
+
+Started GET "/companies/sign_in" for ::1 at 2016-03-04 11:54:43 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/shared/_links.html.erb (11.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/sessions/new.html.erb within layouts/application (34.9ms)
+Completed 200 OK in 1242ms (Views: 1222.1ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 11:54:45 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 11:54:45 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 11:54:45 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 11:54:45 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 11:54:45 +0100
+
+
+Started GET "/companies/sign_in" for ::1 at 2016-03-04 11:54:48 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/shared/_links.html.erb (4.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/sessions/new.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 32ms (Views: 30.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/companies/sign_in" for ::1 at 2016-03-04 11:54:57 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IEphvueq5UKSFFteaL8KVkdH/MTocT8kMbE+fAU7GAXegk5psOLmwyXkNlrHi+/gGZAK/FN/VB4lMM1zkGK78Q==", "company"=>{"email"=>"111@111.nl", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[35mCompany Load (0.6ms)[0m  SELECT  "companies".* FROM "companies" WHERE "companies"."email" = $1  ORDER BY "companies"."id" ASC LIMIT 1  [["email", "111@111.nl"]]
+Completed 401 Unauthorized in 12ms (ActiveRecord: 0.8ms)
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IEphvueq5UKSFFteaL8KVkdH/MTocT8kMbE+fAU7GAXegk5psOLmwyXkNlrHi+/gGZAK/FN/VB4lMM1zkGK78Q==", "company"=>{"email"=>"111@111.nl", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/shared/_links.html.erb (4.9ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/sessions/new.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 149ms (Views: 62.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/companies/sign_up" for ::1 at 2016-03-04 11:55:09 +0100
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/shared/_links.html.erb (4.0ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/registrations/new.html.erb within layouts/application (15.2ms)
+Completed 200 OK in 48ms (Views: 45.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/companies" for ::1 at 2016-03-04 11:55:28 +0100
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"b1+0qHUz02z6aynO3Gvy7e9yaUtchvaVZLxbkQstefmRl5t/InvQ7U2bRMpzXxdbsaWfc+eIna9wPaiennTaDQ==", "company"=>{"email"=>"111@111.nl", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mCompany Exists (0.4ms)[0m  SELECT  1 AS one FROM "companies" WHERE "companies"."email" = '111@111.nl' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "111@111.nl"], ["encrypted_password", "$2a$10$Oi5ckjnOpUP8b5CB.iRDNebJS5VwEgikjxiVin6nVilAuoPGyrbpS"], ["created_at", "2016-03-04 10:55:28.751586"], ["updated_at", "2016-03-04 10:55:28.751586"]]
+  [1m[35m (6.2ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "companies" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "companies"."id" = $7  [["last_sign_in_at", "2016-03-04 10:55:28.761118"], ["current_sign_in_at", "2016-03-04 10:55:28.761118"], ["last_sign_in_ip", "::1/128"], ["current_sign_in_ip", "::1/128"], ["sign_in_count", 1], ["updated_at", "2016-03-04 10:55:28.762459"], ["id", 1]]
+  [1m[36m (6.2ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 121ms (ActiveRecord: 14.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-04 11:55:28 +0100
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/railties-4.2.5.1/lib/rails/templates/rails/welcome/index.html.erb (0.0ms)
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCompanyProfiles (20160304110243)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (15.4ms)[0m  [1mCREATE TABLE "company_profiles" ("id" serial primary key, "name" character varying, "description" text, "size" character varying, "salary_indication" character varying, "jr_sr_ratio" character varying, "company_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (0.7ms)[0m  CREATE  INDEX  "index_company_profiles_on_company_id" ON "company_profiles"  ("company_id")
+  [1m[36m (2.0ms)[0m  [1mALTER TABLE "company_profiles" ADD CONSTRAINT "fk_rails_3ce005a2f3"
+FOREIGN KEY ("company_id")
+  REFERENCES "companies" ("id")
+[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160304110243"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'companies'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'company_profiles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+
+
+Started GET "/" for ::1 at 2016-03-04 12:08:25 +0100
+  [1m[35mActiveRecord::SchemaMigration Load (0.8ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by CompanyProfilesController#index as HTML
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms)
+
+NameError (uninitialized constant CompanyProfilesController::CompanyProfiles):
+  app/controllers/company_profiles_controller.rb:4:in `index'
+
+
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.2ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (83.9ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (72.2ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (161.7ms)
+
+
+Started GET "/" for ::1 at 2016-03-04 12:08:52 +0100
+Processing by CompanyProfilesController#index as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+NameError (uninitialized constant CompanyProfilesController::Company_Profiles):
+  app/controllers/company_profiles_controller.rb:4:in `index'
+
+
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (85.0ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (68.1ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (151.6ms)
+
+
+Started GET "/" for ::1 at 2016-03-04 12:09:03 +0100
+Processing by CompanyProfilesController#index as HTML
+  Rendered company_profiles/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 321ms (Views: 315.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 12:09:03 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 12:09:03 +0100
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 12:09:03 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 12:09:03 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 12:09:03 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 12:09:03 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 12:09:03 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 12:09:03 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 12:09:03 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mCompany Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'fake@fakenike.nl' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "fake@fakenike.nl"], ["encrypted_password", "$2a$10$uIuRxusYj5ph3BQAZn0VR.ThmEmfJFW191KjVlMW.jGciAxK88nqO"], ["created_at", "2016-03-04 11:17:09.604645"], ["updated_at", "2016-03-04 11:17:09.604645"]]
+  [1m[36m (11.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mCompany Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'kpn@fakekpn.nl' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "kpn@fakekpn.nl"], ["encrypted_password", "$2a$10$aCwe9yh6n65Y2rR3wDVD8OTbLKBImFuPsRT/ZkZZVRGhR2qXddDku"], ["created_at", "2016-03-04 11:17:09.694882"], ["updated_at", "2016-03-04 11:17:09.694882"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mCompany Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'nos@fakenos.nl' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "nos@fakenos.nl"], ["encrypted_password", "$2a$10$6ZUaBkys53Sk.9HOf7aaCOg8TW8ingDPb5dsDHxfbFluYqSfaN4sS"], ["created_at", "2016-03-04 11:17:09.770779"], ["updated_at", "2016-03-04 11:17:09.770779"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mCompany Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'smart@fakelight.nl' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "smart@fakelight.nl"], ["encrypted_password", "$2a$10$qrm9k2YdeeOjlZrvzD03zOrtZIEJb5F/4v3ji5NZaGVaDFUb5BmIa"], ["created_at", "2016-03-04 11:17:09.846902"], ["updated_at", "2016-03-04 11:17:09.846902"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Nike"], ["description", "Listicle street art cred pitchfork lomo, craft beer hella selvage kombucha flexitarian heirloom pork belly synth four dollar toast. Actually tilde flannel put a bird on it narwhal kinfolk. Echo park 8-bit vice, truffaut brunch ethical art party flannel mixtape gentrify yr. Synth yuccie XOXO hella PBR&B keytar. Man braid bitters trust fund hammock. Kitsch lo-fi butcher, raw denim church-key shabby chic DIY sustainable polaroid vegan locavore before they sold out chia plaid. Plaid distillery beard, shabby chic bushwick kombucha venmo wayfarers austin."], ["size", "> 100"], ["salary_indication", "2200 - 2400"], ["jr_sr_ratio", "4 / 10"], ["company_id", 2], ["created_at", "2016-03-04 11:17:09.861191"], ["updated_at", "2016-03-04 11:17:09.861191"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "KPN"], ["description", "Put a bird on it mumblecore craft beer, green juice cliche hammock gluten-free keytar distillery XOXO post-ironic aesthetic. 8-bit PBR&B slow-carb fashion axe. Offal seitan flexitarian PBR&B franzen. Offal narwhal meditation crucifix, put a bird on it health goth wolf. Heirloom ramps trust fund, put a bird on it 90's kogi fashion axe paleo 3 wolf moon stumptown godard leggings wayfarers tousled authentic. Kombucha four dollar toast banh mi mixtape trust fund everyday carry, vice affogato. Try-hard artisan irony, deep v twee kogi humblebrag fap hoodie pop-up."], ["size", "> 100"], ["salary_indication", "2400 - 2600"], ["jr_sr_ratio", "6 / 10"], ["company_id", 3], ["created_at", "2016-03-04 11:17:09.864416"], ["updated_at", "2016-03-04 11:17:09.864416"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "NOS"], ["description", "Celiac chambray banjo +1 waistcoat squid. Beard migas food truck, affogato marfa portland disrupt biodiesel microdosing heirloom art party before they sold out forage. Quinoa intelligentsia PBR&B irony raw denim, before they sold out venmo sartorial chillwave microdosing whatever try-hard seitan. Quinoa VHS ugh butcher kale chips direct trade. Drinking vinegar four dollar toast lomo beard hoodie kickstarter, fanny pack master cleanse meditation poutine celiac you probably haven't heard of them jean shorts tilde tote bag. Banh mi gentrify chia, 3 wolf moon brunch mixtape authentic squid tumblr craft beer. Brooklyn retro polaroid hashtag."], ["size", "10 - 50"], ["salary_indication", "2000 - 2200"], ["jr_sr_ratio", "4 / 6"], ["company_id", 4], ["created_at", "2016-03-04 11:17:09.866798"], ["updated_at", "2016-03-04 11:17:09.866798"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Smart Light"], ["description", "Franzen scenester leggings commodo master cleanse, seitan mixtape. Kinfolk art party kickstarter biodiesel excepteur nisi, mollit leggings cupidatat fugiat gentrify velit tote bag et. Echo park pork belly tousled pitchfork, viral fanny pack VHS selfies. Deserunt mixtape aute semiotics, dreamcatcher organic occupy franzen tilde est fingerstache post-ironic deep v pickled salvia. Pariatur retro incididunt asymmetrical hashtag health goth. Health goth tote bag blog hoodie. Nisi irony tempor brooklyn locavore."], ["size", "0 - 10"], ["salary_indication", "> 2000"], ["jr_sr_ratio", "1 / 3"], ["company_id", 5], ["created_at", "2016-03-04 11:17:09.869025"], ["updated_at", "2016-03-04 11:17:09.869025"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for ::1 at 2016-03-04 12:17:14 +0100
+Processing by CompanyProfilesController#index as HTML
+  Rendered company_profiles/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 28ms (Views: 25.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 12:17:14 +0100
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 12:17:14 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 12:17:14 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 12:17:14 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 12:17:14 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 12:17:14 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 12:17:14 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 12:17:14 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 12:17:14 +0100
+
+
+Started GET "/" for ::1 at 2016-03-04 12:20:19 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[36mCompanyProfile Load (0.6ms)[0m  [1mSELECT "company_profiles".* FROM "company_profiles"[0m
+  Rendered company_profiles/index.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 40ms (Views: 37.4ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 12:20:19 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 12:20:19 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 12:20:19 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 12:20:19 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 12:20:19 +0100
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 12:20:19 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 12:20:19 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 12:20:19 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 12:20:19 +0100
+
+
+Started GET "/" for ::1 at 2016-03-04 12:20:32 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[35mCompanyProfile Load (0.3ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  Rendered company_profiles/index.html.erb within layouts/application (3.9ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: <% @profiles.each do |profile| %>
+    2: 
+    3:   <h2><%= @profile.name %> </h2>
+    4: 
+    5: <% end %>
+  app/views/company_profiles/index.html.erb:3:in `block in _app_views_company_profiles_index_html_erb___3975231321064267951_70111405889740'
+  app/views/company_profiles/index.html.erb:1:in `_app_views_company_profiles_index_html_erb___3975231321064267951_70111405889740'
+
+
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (15.6ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.8ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (87.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (68.7ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (152.6ms)
+
+
+Started GET "/" for ::1 at 2016-03-04 12:20:49 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[36mCompanyProfile Load (0.3ms)[0m  [1mSELECT "company_profiles".* FROM "company_profiles"[0m
+  Rendered company_profiles/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 22ms (Views: 21.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 12:20:49 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 12:20:49 +0100
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 12:20:49 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 12:20:49 +0100
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 12:20:49 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 12:20:49 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 12:20:49 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 12:20:49 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 12:20:49 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mCompanyProfile Load (0.6ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1  [["id", 1]]
+  [1m[36m (11.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1[0m  [["id", 2]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1  [["id", 3]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1[0m  [["id", 4]]
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36mCompany Load (0.6ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "companies" WHERE "companies"."id" = $1  [["id", 2]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 3]]
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "companies" WHERE "companies"."id" = $1  [["id", 4]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 5]]
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mCompany Exists (0.7ms)[0m  SELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'fake@fakenike.nl' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "fake@fakenike.nl"], ["encrypted_password", "$2a$10$nzLozEgLzTl.NGIm1VKZRu0cTxBqBSZIo/Xn9FTzNFXOmI8BXvice"], ["created_at", "2016-03-04 11:22:35.718146"], ["updated_at", "2016-03-04 11:22:35.718146"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mCompany Exists (0.3ms)[0m  SELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'kpn@fakekpn.nl' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "kpn@fakekpn.nl"], ["encrypted_password", "$2a$10$.IpRCvYDi/fk/e8UTNlF3ufLImDqWJ2E2g8qDpCVuCyIQOTDTHl2O"], ["created_at", "2016-03-04 11:22:35.794298"], ["updated_at", "2016-03-04 11:22:35.794298"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mCompany Exists (0.3ms)[0m  SELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'nos@fakenos.nl' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "nos@fakenos.nl"], ["encrypted_password", "$2a$10$4AuBlpPm69M.tJ4zpeMbOO/quYaJLfylaEhTjoI04zwfDXIFKPIc2"], ["created_at", "2016-03-04 11:22:35.869904"], ["updated_at", "2016-03-04 11:22:35.869904"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mCompany Exists (0.3ms)[0m  SELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'smart@fakelight.nl' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "smart@fakelight.nl"], ["encrypted_password", "$2a$10$cqSEbpmNSzohpChrAOwHteSGpKGMM/Xebo/s3oetcZS42Dp5eDlH6"], ["created_at", "2016-03-04 11:22:35.947168"], ["updated_at", "2016-03-04 11:22:35.947168"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Nike"], ["description", "Listicle street art cred pitchfork lomo, craft beer hella selvage kombucha flexitarian heirloom pork belly synth four dollar toast. Actually tilde flannel put a bird on it narwhal kinfolk. Echo park 8-bit vice, truffaut brunch ethical art party flannel mixtape gentrify yr. Synth yuccie XOXO hella PBR&B keytar. Man braid bitters trust fund hammock. Kitsch lo-fi butcher, raw denim church-key shabby chic DIY sustainable polaroid vegan locavore before they sold out chia plaid. Plaid distillery beard, shabby chic bushwick kombucha venmo wayfarers austin."], ["size", "> 100"], ["salary_indication", "2200 - 2400"], ["jr_sr_ratio", "4 / 10"], ["company_id", 6], ["created_at", "2016-03-04 11:22:35.949792"], ["updated_at", "2016-03-04 11:22:35.949792"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "KPN"], ["description", "Put a bird on it mumblecore craft beer, green juice cliche hammock gluten-free keytar distillery XOXO post-ironic aesthetic. 8-bit PBR&B slow-carb fashion axe. Offal seitan flexitarian PBR&B franzen. Offal narwhal meditation crucifix, put a bird on it health goth wolf. Heirloom ramps trust fund, put a bird on it 90's kogi fashion axe paleo 3 wolf moon stumptown godard leggings wayfarers tousled authentic. Kombucha four dollar toast banh mi mixtape trust fund everyday carry, vice affogato. Try-hard artisan irony, deep v twee kogi humblebrag fap hoodie pop-up."], ["size", "> 100"], ["salary_indication", "2400 - 2600"], ["jr_sr_ratio", "6 / 10"], ["company_id", 7], ["created_at", "2016-03-04 11:22:35.952896"], ["updated_at", "2016-03-04 11:22:35.952896"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "NOS"], ["description", "Celiac chambray banjo +1 waistcoat squid. Beard migas food truck, affogato marfa portland disrupt biodiesel microdosing heirloom art party before they sold out forage. Quinoa intelligentsia PBR&B irony raw denim, before they sold out venmo sartorial chillwave microdosing whatever try-hard seitan. Quinoa VHS ugh butcher kale chips direct trade. Drinking vinegar four dollar toast lomo beard hoodie kickstarter, fanny pack master cleanse meditation poutine celiac you probably haven't heard of them jean shorts tilde tote bag. Banh mi gentrify chia, 3 wolf moon brunch mixtape authentic squid tumblr craft beer. Brooklyn retro polaroid hashtag."], ["size", "10 - 50"], ["salary_indication", "2000 - 2200"], ["jr_sr_ratio", "4 / 6"], ["company_id", 8], ["created_at", "2016-03-04 11:22:35.955372"], ["updated_at", "2016-03-04 11:22:35.955372"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Smart Light"], ["description", "Franzen scenester leggings commodo master cleanse, seitan mixtape. Kinfolk art party kickstarter biodiesel excepteur nisi, mollit leggings cupidatat fugiat gentrify velit tote bag et. Echo park pork belly tousled pitchfork, viral fanny pack VHS selfies. Deserunt mixtape aute semiotics, dreamcatcher organic occupy franzen tilde est fingerstache post-ironic deep v pickled salvia. Pariatur retro incididunt asymmetrical hashtag health goth. Health goth tote bag blog hoodie. Nisi irony tempor brooklyn locavore."], ["size", "0 - 10"], ["salary_indication", "> 2000"], ["jr_sr_ratio", "1 / 3"], ["company_id", 9], ["created_at", "2016-03-04 11:22:35.958201"], ["updated_at", "2016-03-04 11:22:35.958201"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mCompanyProfile Load (0.6ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1  [["id", 5]]
+  [1m[36m (11.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1[0m  [["id", 6]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1  [["id", 7]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1[0m  [["id", 8]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36mCompany Load (0.6ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 6]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "companies" WHERE "companies"."id" = $1  [["id", 7]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "companies" WHERE "companies"."id" = $1[0m  [["id", 8]]
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "companies" WHERE "companies"."id" = $1  [["id", 9]]
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mCompany Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'fake@fakenike.nl' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mCompany Exists (0.3ms)[0m  SELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'kpn@fakekpn.nl' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mCompany Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'nos@fakenos.nl' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mCompany Exists (0.3ms)[0m  SELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'smart@fakelight.nl' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "Nike"], ["description", "Listicle street art cred pitchfork lomo, craft beer hella selvage kombucha flexitarian heirloom pork belly synth four dollar toast. Actually tilde flannel put a bird on it narwhal kinfolk. Echo park 8-bit vice, truffaut brunch ethical art party flannel mixtape gentrify yr. Synth yuccie XOXO hella PBR&B keytar. Man braid bitters trust fund hammock. Kitsch lo-fi butcher, raw denim church-key shabby chic DIY sustainable polaroid vegan locavore before they sold out chia plaid. Plaid distillery beard, shabby chic bushwick kombucha venmo wayfarers austin."], ["size", "> 100"], ["salary_indication", "2200 - 2400"], ["jr_sr_ratio", "4 / 10"], ["created_at", "2016-03-04 11:23:45.280612"], ["updated_at", "2016-03-04 11:23:45.280612"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["name", "KPN"], ["description", "Put a bird on it mumblecore craft beer, green juice cliche hammock gluten-free keytar distillery XOXO post-ironic aesthetic. 8-bit PBR&B slow-carb fashion axe. Offal seitan flexitarian PBR&B franzen. Offal narwhal meditation crucifix, put a bird on it health goth wolf. Heirloom ramps trust fund, put a bird on it 90's kogi fashion axe paleo 3 wolf moon stumptown godard leggings wayfarers tousled authentic. Kombucha four dollar toast banh mi mixtape trust fund everyday carry, vice affogato. Try-hard artisan irony, deep v twee kogi humblebrag fap hoodie pop-up."], ["size", "> 100"], ["salary_indication", "2400 - 2600"], ["jr_sr_ratio", "6 / 10"], ["created_at", "2016-03-04 11:23:45.283555"], ["updated_at", "2016-03-04 11:23:45.283555"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["name", "NOS"], ["description", "Celiac chambray banjo +1 waistcoat squid. Beard migas food truck, affogato marfa portland disrupt biodiesel microdosing heirloom art party before they sold out forage. Quinoa intelligentsia PBR&B irony raw denim, before they sold out venmo sartorial chillwave microdosing whatever try-hard seitan. Quinoa VHS ugh butcher kale chips direct trade. Drinking vinegar four dollar toast lomo beard hoodie kickstarter, fanny pack master cleanse meditation poutine celiac you probably haven't heard of them jean shorts tilde tote bag. Banh mi gentrify chia, 3 wolf moon brunch mixtape authentic squid tumblr craft beer. Brooklyn retro polaroid hashtag."], ["size", "10 - 50"], ["salary_indication", "2000 - 2200"], ["jr_sr_ratio", "4 / 6"], ["created_at", "2016-03-04 11:23:45.285654"], ["updated_at", "2016-03-04 11:23:45.285654"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["name", "Smart Light"], ["description", "Franzen scenester leggings commodo master cleanse, seitan mixtape. Kinfolk art party kickstarter biodiesel excepteur nisi, mollit leggings cupidatat fugiat gentrify velit tote bag et. Echo park pork belly tousled pitchfork, viral fanny pack VHS selfies. Deserunt mixtape aute semiotics, dreamcatcher organic occupy franzen tilde est fingerstache post-ironic deep v pickled salvia. Pariatur retro incididunt asymmetrical hashtag health goth. Health goth tote bag blog hoodie. Nisi irony tempor brooklyn locavore."], ["size", "0 - 10"], ["salary_indication", "> 2000"], ["jr_sr_ratio", "1 / 3"], ["created_at", "2016-03-04 11:23:45.287704"], ["updated_at", "2016-03-04 11:23:45.287704"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for ::1 at 2016-03-04 12:23:51 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[35mCompanyProfile Load (0.4ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  Rendered company_profiles/index.html.erb within layouts/application (3.6ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.4ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: <% @profiles.each do |profile| %>
+    2: 
+    3:   <h2><%= @profile.name %> </h2>
+    4: 
+    5: <% end %>
+  app/views/company_profiles/index.html.erb:3:in `block in _app_views_company_profiles_index_html_erb___3975231321064267951_70111415517640'
+  app/views/company_profiles/index.html.erb:1:in `_app_views_company_profiles_index_html_erb___3975231321064267951_70111415517640'
+
+
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.2ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (87.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (73.1ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (164.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mCompanyProfile Load (0.6ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1  [["id", 9]]
+  [1m[36m (11.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1[0m  [["id", 10]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1  [["id", 11]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "company_profiles" WHERE "company_profiles"."id" = $1[0m  [["id", 12]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36mCompany Load (0.6ms)[0m  [1mSELECT "companies".* FROM "companies"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mCompany Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'fake@fakenike.nl' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "fake@fakenike.nl"], ["encrypted_password", "$2a$10$XZvbbrYBV8pAiqaVZDaPDOCMGicdzcEk4046Y6MKpW.5TUin3VV2m"], ["created_at", "2016-03-04 11:27:44.684764"], ["updated_at", "2016-03-04 11:27:44.684764"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mCompany Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'kpn@fakekpn.nl' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "kpn@fakekpn.nl"], ["encrypted_password", "$2a$10$Q6Rx82aPECnrbU8.wAphCeT9Ww955we65m5h6pwDYtyU.Pg/.CtVS"], ["created_at", "2016-03-04 11:27:44.764216"], ["updated_at", "2016-03-04 11:27:44.764216"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mCompany Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'nos@fakenos.nl' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "nos@fakenos.nl"], ["encrypted_password", "$2a$10$b.dTBDBj2U8mg/5MRqOb9uXntmMPAp2KABH4C6Yu/NOAxdoeJQYSq"], ["created_at", "2016-03-04 11:27:44.839712"], ["updated_at", "2016-03-04 11:27:44.839712"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mCompany Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "companies" WHERE "companies"."email" = 'smart@fakelight.nl' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "companies" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["email", "smart@fakelight.nl"], ["encrypted_password", "$2a$10$0hnrR3jJKlhnq1JSMB824ekAYxkdhT5CFcrw8fcc./vhIpufR48Ti"], ["created_at", "2016-03-04 11:27:44.916826"], ["updated_at", "2016-03-04 11:27:44.916826"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Nike"], ["description", "Listicle street art cred pitchfork lomo, craft beer hella selvage kombucha flexitarian heirloom pork belly synth four dollar toast. Actually tilde flannel put a bird on it narwhal kinfolk. Echo park 8-bit vice, truffaut brunch ethical art party flannel mixtape gentrify yr. Synth yuccie XOXO hella PBR&B keytar. Man braid bitters trust fund hammock. Kitsch lo-fi butcher, raw denim church-key shabby chic DIY sustainable polaroid vegan locavore before they sold out chia plaid. Plaid distillery beard, shabby chic bushwick kombucha venmo wayfarers austin."], ["size", "> 100"], ["salary_indication", "2200 - 2400"], ["jr_sr_ratio", "4 / 10"], ["company_id", 10], ["created_at", "2016-03-04 11:27:44.919327"], ["updated_at", "2016-03-04 11:27:44.919327"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "KPN"], ["description", "Put a bird on it mumblecore craft beer, green juice cliche hammock gluten-free keytar distillery XOXO post-ironic aesthetic. 8-bit PBR&B slow-carb fashion axe. Offal seitan flexitarian PBR&B franzen. Offal narwhal meditation crucifix, put a bird on it health goth wolf. Heirloom ramps trust fund, put a bird on it 90's kogi fashion axe paleo 3 wolf moon stumptown godard leggings wayfarers tousled authentic. Kombucha four dollar toast banh mi mixtape trust fund everyday carry, vice affogato. Try-hard artisan irony, deep v twee kogi humblebrag fap hoodie pop-up."], ["size", "> 100"], ["salary_indication", "2400 - 2600"], ["jr_sr_ratio", "6 / 10"], ["company_id", 11], ["created_at", "2016-03-04 11:27:44.922176"], ["updated_at", "2016-03-04 11:27:44.922176"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "NOS"], ["description", "Celiac chambray banjo +1 waistcoat squid. Beard migas food truck, affogato marfa portland disrupt biodiesel microdosing heirloom art party before they sold out forage. Quinoa intelligentsia PBR&B irony raw denim, before they sold out venmo sartorial chillwave microdosing whatever try-hard seitan. Quinoa VHS ugh butcher kale chips direct trade. Drinking vinegar four dollar toast lomo beard hoodie kickstarter, fanny pack master cleanse meditation poutine celiac you probably haven't heard of them jean shorts tilde tote bag. Banh mi gentrify chia, 3 wolf moon brunch mixtape authentic squid tumblr craft beer. Brooklyn retro polaroid hashtag."], ["size", "10 - 50"], ["salary_indication", "2000 - 2200"], ["jr_sr_ratio", "4 / 6"], ["company_id", 12], ["created_at", "2016-03-04 11:27:44.924508"], ["updated_at", "2016-03-04 11:27:44.924508"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "company_profiles" ("name", "description", "size", "salary_indication", "jr_sr_ratio", "company_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["name", "Smart Light"], ["description", "Franzen scenester leggings commodo master cleanse, seitan mixtape. Kinfolk art party kickstarter biodiesel excepteur nisi, mollit leggings cupidatat fugiat gentrify velit tote bag et. Echo park pork belly tousled pitchfork, viral fanny pack VHS selfies. Deserunt mixtape aute semiotics, dreamcatcher organic occupy franzen tilde est fingerstache post-ironic deep v pickled salvia. Pariatur retro incididunt asymmetrical hashtag health goth. Health goth tote bag blog hoodie. Nisi irony tempor brooklyn locavore."], ["size", "0 - 10"], ["salary_indication", "> 2000"], ["jr_sr_ratio", "1 / 3"], ["company_id", 13], ["created_at", "2016-03-04 11:27:44.926769"], ["updated_at", "2016-03-04 11:27:44.926769"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for ::1 at 2016-03-04 12:27:51 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[36mCompanyProfile Load (0.4ms)[0m  [1mSELECT "company_profiles".* FROM "company_profiles"[0m
+  Rendered company_profiles/index.html.erb within layouts/application (3.9ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.4ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: <% @profiles.each do |profile| %>
+    2: 
+    3:   <h2><%= @profile.name %> </h2>
+    4: 
+    5: <% end %>
+  app/views/company_profiles/index.html.erb:3:in `block in _app_views_company_profiles_index_html_erb___3975231321064267951_70111415517640'
+  app/views/company_profiles/index.html.erb:1:in `_app_views_company_profiles_index_html_erb___3975231321064267951_70111415517640'
+
+
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (85.1ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (68.9ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (150.9ms)
+
+
+Started GET "/" for ::1 at 2016-03-04 12:31:22 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[35mCompanyProfile Load (0.3ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  Rendered company_profiles/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 22ms (Views: 21.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 12:31:22 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 12:31:22 +0100
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 12:31:22 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 12:31:22 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 12:31:22 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 12:31:22 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 12:31:22 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 12:31:22 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 12:31:22 +0100
+
+
+Started GET "/" for ::1 at 2016-03-04 13:26:31 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[36mCompanyProfile Load (0.3ms)[0m  [1mSELECT "company_profiles".* FROM "company_profiles"[0m
+  Rendered company_profiles/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 24ms (Views: 22.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:26:31 +0100
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:26:31 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 13:26:31 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:26:31 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 13:26:31 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:26:31 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 13:26:31 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 13:26:31 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 13:26:31 +0100
+
+
+Started GET "/" for ::1 at 2016-03-04 13:28:22 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[35mCompanyProfile Load (0.4ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  Rendered company_profiles/index.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 42ms (Views: 37.6ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:28:22 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 13:28:22 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 13:28:22 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 13:28:22 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 13:28:22 +0100
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:28:22 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:28:22 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:28:22 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 13:28:22 +0100
+
+
+Started GET "/" for ::1 at 2016-03-04 13:32:50 +0100
+
+SyntaxError (/Users/irisbune/Documents/Traineeship/Rails/jrdev-job-hunt/app/controllers/company_profiles_controller.rb:3: syntax error, unexpected tFID, expecting ';' or '\n'
+/Users/irisbune/Documents/Traineeship/Rails/jrdev-job-hunt/app/controllers/company_profiles_controller.rb:9: syntax error, unexpected keyword_end, expecting end-of-input):
+  app/controllers/company_profiles_controller.rb:3: syntax error, unexpected tFID, expecting ';' or '\n'
+  app/controllers/company_profiles_controller.rb:9: syntax error, unexpected keyword_end, expecting end-of-input
+
+
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (15.8ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (98.2ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (70.8ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (157.9ms)
+
+
+Started GET "/" for ::1 at 2016-03-04 13:32:56 +0100
+Processing by CompanyProfilesController#index as HTML
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `user_signed_in?' for #<CompanyProfilesController:0x007f882d7237f8>):
+  app/controllers/company_profiles_controller.rb:4:in `index'
+
+
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (8.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (82.7ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (69.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (153.4ms)
+
+
+Started GET "/" for ::1 at 2016-03-04 13:33:05 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[36mCompany Load (0.3ms)[0m  [1mSELECT  "companies".* FROM "companies" WHERE "companies"."id" = $1  ORDER BY "companies"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 2.5ms)
+
+NameError (undefined local variable or method `new_user_registration_path' for #<CompanyProfilesController:0x007f882aa205d0>):
+  app/controllers/company_profiles_controller.rb:7:in `index'
+
+
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.8ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (87.8ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (75.2ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (153.5ms)
+
+
+Started GET "/" for ::1 at 2016-03-04 13:33:11 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[35mCompany Load (0.2ms)[0m  SELECT  "companies".* FROM "companies" WHERE "companies"."id" = $1  ORDER BY "companies"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/companies/sign_up
+Completed 302 Found in 5ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/companies/sign_up" for ::1 at 2016-03-04 13:33:11 +0100
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/shared/_links.html.erb (2.6ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/registrations/new.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 57ms (Views: 47.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:33:11 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 13:33:11 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 13:33:11 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 13:33:11 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 13:33:11 +0100
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:33:11 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:33:11 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:33:11 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 13:33:11 +0100
+
+
+Started GET "/companies/sign_in" for ::1 at 2016-03-04 13:33:14 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/shared/_links.html.erb (3.9ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/sessions/new.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 41ms (Views: 39.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/companies/sign_in" for ::1 at 2016-03-04 13:35:16 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/shared/_links.html.erb (6.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views/devise/sessions/new.html.erb within layouts/application (15.3ms)
+Completed 200 OK in 59ms (Views: 45.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:35:16 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 13:35:16 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 13:35:16 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 13:35:16 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 13:35:16 +0100
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:35:16 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:35:16 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:35:16 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 13:35:16 +0100
+
+
+Started POST "/companies/sign_in" for ::1 at 2016-03-04 13:35:38 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NASKYnxhnHwXcKS2NIYUj//17vGakLxZ2Hi5mKYx0yrKzKW1Kymf/aCAybKbsvE5oSIYySGe12PM+UqXM2hw3g==", "company"=>{"email"=>"fake@fakenike.nl", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mCompany Load (0.5ms)[0m  [1mSELECT  "companies".* FROM "companies" WHERE "companies"."email" = $1  ORDER BY "companies"."id" ASC LIMIT 1[0m  [["email", "fake@fakenike.nl"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "companies" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "companies"."id" = $7[0m  [["last_sign_in_at", "2016-03-04 12:35:38.561330"], ["current_sign_in_at", "2016-03-04 12:35:38.561330"], ["last_sign_in_ip", "::1/128"], ["current_sign_in_ip", "::1/128"], ["sign_in_count", 1], ["updated_at", "2016-03-04 12:35:38.562708"], ["id", 10]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 96ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/" for ::1 at 2016-03-04 13:35:38 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[36mCompany Load (0.4ms)[0m  [1mSELECT  "companies".* FROM "companies" WHERE "companies"."id" = $1  ORDER BY "companies"."id" ASC LIMIT 1[0m  [["id", 10]]
+  [1m[35mCompanyProfile Load (0.4ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  Rendered company_profiles/index.html.erb within layouts/application (9.2ms)
+Completed 200 OK in 38ms (Views: 31.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/" for ::1 at 2016-03-04 13:40:11 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[36mCompany Load (0.2ms)[0m  [1mSELECT  "companies".* FROM "companies" WHERE "companies"."id" = $1  ORDER BY "companies"."id" ASC LIMIT 1[0m  [["id", 10]]
+  [1m[35mCompanyProfile Load (0.3ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  Rendered company_profiles/index.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 41ms (Views: 26.9ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:40:11 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 13:40:11 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 13:40:11 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 13:40:11 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 13:40:11 +0100
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:40:11 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:40:11 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 13:40:11 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:40:11 +0100
+
+
+Started GET "/" for ::1 at 2016-03-04 13:41:08 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[36mCompanyProfile Load (0.3ms)[0m  [1mSELECT "company_profiles".* FROM "company_profiles"[0m
+  Rendered company_profiles/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 31ms (Views: 27.1ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:41:08 +0100
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:41:08 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 13:41:08 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 13:41:08 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 13:41:08 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 13:41:08 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:41:08 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:41:08 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 13:41:08 +0100
+
+
+Started GET "/" for ::1 at 2016-03-04 13:50:49 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[35mCompanyProfile Load (0.3ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  Rendered company_profiles/index.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 35ms (Views: 30.5ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:50:49 +0100
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:50:49 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 13:50:49 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 13:50:49 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 13:50:49 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:50:49 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 13:50:49 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:50:49 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 13:50:49 +0100
+
+
+Started GET "/company_profiles" for ::1 at 2016-03-04 13:50:51 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[36mCompanyProfile Load (0.4ms)[0m  [1mSELECT "company_profiles".* FROM "company_profiles"[0m
+  Rendered company_profiles/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 32ms (Views: 30.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/company_profiles" for ::1 at 2016-03-04 13:50:59 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[35mCompanyProfile Load (0.6ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  Rendered company_profiles/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 23ms (Views: 22.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:50:59 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 13:50:59 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 13:50:59 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 13:50:59 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 13:50:59 +0100
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:50:59 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:50:59 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:50:59 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 13:50:59 +0100
+
+
+Started GET "/company_profiles.13" for ::1 at 2016-03-04 13:51:01 +0100
+Processing by CompanyProfilesController#index as 
+  [1m[36mCompanyProfile Load (0.3ms)[0m  [1mSELECT "company_profiles".* FROM "company_profiles"[0m
+  Rendered company_profiles/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 41ms (Views: 39.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/company_profiles.13" for ::1 at 2016-03-04 13:53:16 +0100
+Processing by CompanyProfilesController#index as 
+  [1m[35mCompanyProfile Load (0.4ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  Rendered company_profiles/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 41ms (Views: 40.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:53:16 +0100
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:53:16 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 13:53:16 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 13:53:16 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 13:53:16 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 13:53:16 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:53:16 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:53:16 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 13:53:16 +0100
+
+
+Started GET "/company_profiles.13" for ::1 at 2016-03-04 13:53:18 +0100
+Processing by CompanyProfilesController#index as 
+  [1m[36mCompanyProfile Load (0.3ms)[0m  [1mSELECT "company_profiles".* FROM "company_profiles"[0m
+  Rendered company_profiles/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 36ms (Views: 34.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:53:18 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 13:53:18 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 13:53:18 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 13:53:18 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 13:53:18 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:53:18 +0100
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:53:18 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:53:18 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 13:53:18 +0100
+
+
+Started GET "/company_profiles" for ::1 at 2016-03-04 13:53:19 +0100
+Processing by CompanyProfilesController#index as HTML
+  [1m[35mCompanyProfile Load (0.4ms)[0m  SELECT "company_profiles".* FROM "company_profiles"
+  Rendered company_profiles/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 30ms (Views: 29.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/company_profiles/13" for ::1 at 2016-03-04 13:53:21 +0100
+Processing by CompanyProfilesController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mCompanyProfile Load (0.3ms)[0m  [1mSELECT  "company_profiles".* FROM "company_profiles" WHERE "company_profiles"."id" = $1 LIMIT 1[0m  [["id", 13]]
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.3ms)
+
+ActionView::MissingTemplate (Missing template company_profiles/show, application/show with {:locale=>[:en], :formats=>[:html, :xml], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/irisbune/Documents/Traineeship/Rails/jrdev-job-hunt/app/views"
+  * "/Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views"
+):
+  actionview (4.2.5.1) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.5.1) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5.1) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:815:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5.1) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.9ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (82.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (66.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (147.3ms)
+
+
+Started GET "/company_profiles/13" for ::1 at 2016-03-04 13:53:22 +0100
+Processing by CompanyProfilesController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[35mCompanyProfile Load (0.4ms)[0m  SELECT  "company_profiles".* FROM "company_profiles" WHERE "company_profiles"."id" = $1 LIMIT 1  [["id", 13]]
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.4ms)
+
+ActionView::MissingTemplate (Missing template company_profiles/show, application/show with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/irisbune/Documents/Traineeship/Rails/jrdev-job-hunt/app/views"
+  * "/Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/devise-3.5.6/app/views"
+):
+  actionview (4.2.5.1) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.5.1) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.5.1) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.5.1) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.5.1) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5.1) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.5.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5.1) lib/action_dispatch/routing/route_set.rb:815:in `call'
+  warden (1.2.6) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.6) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.6) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5.1) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5.1) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5.1) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.0ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.7ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/actionpack-4.2.5.1/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (74.6ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (67.1ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/irisbune/.rbenv/versions/2.2.1/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (153.0ms)
+
+
+Started GET "/company_profiles/13" for ::1 at 2016-03-04 13:54:32 +0100
+Processing by CompanyProfilesController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mCompanyProfile Load (0.4ms)[0m  [1mSELECT  "company_profiles".* FROM "company_profiles" WHERE "company_profiles"."id" = $1 LIMIT 1[0m  [["id", 13]]
+  Rendered company_profiles/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 30ms (Views: 28.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/companies.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:54:32 +0100
+
+
+Started GET "/assets/company_profiles.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-03-04 13:54:32 +0100
+
+
+Started GET "/assets/jquery.self-c64a74367bda6ef8b860f19e74df08927ca99d2be2ac934e9e92d5fd361e0da4.js?body=1" for ::1 at 2016-03-04 13:54:32 +0100
+
+
+Started GET "/assets/jquery_ujs.self-d602bdfe68ffc63b9f9cc512872aa3cfff046228a0a36e90dd476e8ef54c1b09.js?body=1" for ::1 at 2016-03-04 13:54:32 +0100
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2016-03-04 13:54:32 +0100
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-03-04 13:54:32 +0100
+
+
+Started GET "/assets/companies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:54:32 +0100
+
+
+Started GET "/assets/company_profiles.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-03-04 13:54:32 +0100
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for ::1 at 2016-03-04 13:54:32 +0100

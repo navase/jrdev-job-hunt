@@ -1,25 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Junior Profiles</h1>
+<h1>Junior Profiles</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @junior_profiles.each do |junior_profile| %>
-      <tr>
-        <td><%= link_to 'Show', junior_profile %></td>
-        <td><%= link_to 'Edit', edit_junior_profile_path(junior_profile) %></td>
-        <td><%= link_to 'Destroy', junior_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Junior profile', new_junior_profile_path %>
+<% @junior_profiles.each do |junior_profile| %>
+  <p><%= link_to junior_profile.name, junior_profile %></p>
+<% end %>

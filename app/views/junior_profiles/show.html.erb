@@ -1,10 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<div>
-  <p>Name: <%= @junior_profile.name %></p>
-  <p>City: <%= @junior_profile.city %></p>
-  <p>Picture: <%= @junior_profile.picture %></p>
-</div>
+<h1><%= @junior_profile.name %></h1>
+
+<p>City: <%= @junior_profile.city %></p>
+<p>Picture: <%= @junior_profile.picture %></p>
 
 <h2>Skills</h2>
 
@@ -23,5 +22,7 @@
   <p><% if @junior_profile.csharp %><%= "C#" %><% end %></p>
 </div>
 
-<%= link_to 'Edit', edit_junior_profile_path(@junior_profile) %> |
+<% if (junior_signed_in? && (current_junior.id == @junior_profile.junior_id)) %>
+  <%= link_to 'Edit', edit_junior_profile_path(@junior_profile) %> |
+<% end %>
 <%= link_to 'Back', junior_profiles_path %>

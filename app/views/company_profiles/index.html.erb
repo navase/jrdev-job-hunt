@@ -1,0 +1,11 @@
+<% @profiles.each do |profile| %>
+
+  <h2><%= link_to profile.name, profile %></h2>
+  <p><%=  profile.description %></p>
+  <ul>
+    <li>Salary indication: <%= profile.salary_indication %></li>
+    <li>Size: <%= profile.size %></li>
+    <li>Jr/Sr ratio: <%= profile.jr_sr_ratio %></li>
+  </ul>
+
+<% end %>

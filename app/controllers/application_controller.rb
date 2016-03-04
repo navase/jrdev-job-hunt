@@ -6,4 +6,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(junior)
     new_junior_profile_path
   end
+
+  def after_sign_in_path_for(company)
+    new_company_profile_path
+  end
 end

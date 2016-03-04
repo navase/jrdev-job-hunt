@@ -1,7 +1,7 @@
+<p><%= @company.email %></p>
 <% @company_profiles.each do |company_profile| %>
-
-  <h2><%= link_to company_profile.name, company_profile %></h2>
-  <p><%=  company_profile.description %></p>
+  <h1><%= company_profile.name %></h1>
+  <p><%= company_profile.description %></p>
   <ul>
     <li>Salary indication: <%= company_profile.salary_indication %></li>
     <li>Size: <%= company_profile.size %></li>

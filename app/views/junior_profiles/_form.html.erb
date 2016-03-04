@@ -11,6 +11,37 @@
     </div>
   <% end %>
 
+  <div>
+    <p><%= f.label :name %></p>
+    <p><%= f.text_field :name %></p>
+  </div>
+
+  <div>
+    <p><%= f.label :city %></p>
+    <p><%= f.text_field :city %></p>
+  </div>
+
+  <div>
+    <p><%= f.label :picture %></p>
+    <p><%= f.text_field :picture %></p>
+  </div>
+
+  <div>
+    <p><%= f.check_box :ruby %> <%= f.label "Ruby" %></p>
+    <p><%= f.check_box :ruby %> <%= f.label "Ruby on Rails" %></p>
+    <p><%= f.check_box :ruby %> <%= f.label "Javascript" %></p>
+    <p><%= f.check_box :ruby %> <%= f.label "Coffeescript" %></p>
+    <p><%= f.check_box :ruby %> <%= f.label "jQuery" %></p>
+    <p><%= f.check_box :ruby %> <%= f.label "Node.js" %></p>
+    <p><%= f.check_box :ruby %> <%= f.label "React.js" %></p>
+    <p><%= f.check_box :ruby %> <%= f.label "PHP" %></p>
+    <p><%= f.check_box :ruby %> <%= f.label "Java" %></p>
+    <p><%= f.check_box :ruby %> <%= f.label ".Net" %></p>
+    <p><%= f.check_box :ruby %> <%= f.label "C++" %></p>
+    <p><%= f.check_box :ruby %> <%= f.label "C#" %></p>
+
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

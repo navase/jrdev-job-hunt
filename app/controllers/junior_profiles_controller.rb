@@ -7,11 +7,24 @@ class JuniorProfilesController < ApplicationController
   # GET /junior_profiles.json
   def index
     @junior_profiles = JuniorProfile.all
+
+    respond_to do |format|
+      format.html { }
+      format.json {
+        render json: @junior_profiles
+      }
+    end
   end
 
   # GET /junior_profiles/1
   # GET /junior_profiles/1.json
   def show
+    respond_to do |format|
+      format.html { }
+      format.json {
+        render json: @junior_profile
+      }
+    end
   end
 
   # GET /junior_profiles/new

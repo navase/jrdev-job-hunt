@@ -5,18 +5,22 @@ class ApplicationController < ActionController::Base
 
   def after_sign_up_path_for(junior)
     new_junior_profile_path
+    # hier komt url naar app op bitballoon of localhost
   end
-  
+
   def after_sign_in_path_for(junior)
     root_path
+    # hier komt url naar app op bitballoon of localhost
   end
 
   def after_sign_up_path_for(company)
     new_company_profile_path
+    # hier komt url naar app op bitballoon of localhost
   end
 
   def after_sign_in_path_for(company)
     company_path
+    # hier komt url naar app op bitballoon of localhost
   end
 
 end

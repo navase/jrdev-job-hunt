@@ -1,0 +1,48 @@
+<%= form_for(@junior_profile) do |f| %>
+  <% if @junior_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@junior_profile.errors.count, "error") %> prohibited this junior_profile from being saved:</h2>
+
+      <ul>
+      <% @junior_profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <p><%= f.label :name %></p>
+    <p><%= f.text_field :name %></p>
+  </div>
+
+  <div>
+    <p><%= f.label :city %></p>
+    <p><%= f.text_field :city %></p>
+  </div>
+
+  <div>
+    <p><%= f.label :picture %></p>
+    <p><%= f.text_field :picture %></p>
+  </div>
+
+  <div>
+    <p><%= f.check_box :ruby %> <%= f.label :ruby, "Ruby" %></p>
+    <p><%= f.check_box :rails %> <%= f.label :rails, "Ruby on Rails" %></p>
+    <p><%= f.check_box :javascript %> <%= f.label :javascript, "Javascript" %></p>
+    <p><%= f.check_box :coffeescript %> <%= f.label :coffeescript, "Coffeescript" %></p>
+    <p><%= f.check_box :jquery %> <%= f.label :jquery, "jQuery" %></p>
+    <p><%= f.check_box :node %> <%= f.label :node, "Node.js" %></p>
+    <p><%= f.check_box :react %> <%= f.label :react, "React.js" %></p>
+    <p><%= f.check_box :php %> <%= f.label :php, "PHP" %></p>
+    <p><%= f.check_box :java %> <%= f.label :java, "Java" %></p>
+    <p><%= f.check_box :net %> <%= f.label :net, ".Net" %></p>
+    <p><%= f.check_box :cplusplus %> <%= f.label :cplusplus, "C++" %></p>
+    <p><%= f.check_box :csharp %> <%= f.label :csharp, "C#" %></p>
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

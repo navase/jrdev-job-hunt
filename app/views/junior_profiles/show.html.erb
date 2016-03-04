@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+  <p>Name: <%= @junior_profile.name %></p>
+  <p>City: <%= @junior_profile.city %></p>
+  <p>Picture: <%= @junior_profile.picture %></p>
+</div>
+
+<h2>Skills</h2>
+
+<div>
+  <p><% if @junior_profile.ruby %><%= "Ruby" %><% end %></p>
+  <p><% if @junior_profile.rails %><%= "Rails" %><% end %></p>
+  <p><% if @junior_profile.javascript %><%= "Javascript" %><% end %></p>
+  <p><% if @junior_profile.coffeescript %><%= "Coffeescript" %><% end %></p>
+  <p><% if @junior_profile.jquery %><%= "jQuery" %><% end %></p>
+  <p><% if @junior_profile.node %><%= "Node" %><% end %></p>
+  <p><% if @junior_profile.react %><%= "React" %><% end %></p>
+  <p><% if @junior_profile.php %><%= "PHP" %><% end %></p>
+  <p><% if @junior_profile.java %><%= "Java" %><% end %></p>
+  <p><% if @junior_profile.net %><%= ".Net" %><% end %></p>
+  <p><% if @junior_profile.cplusplus %><%= "C++" %><% end %></p>
+  <p><% if @junior_profile.csharp %><%= "C#" %><% end %></p>
+</div>
+
+<%= link_to 'Edit', edit_junior_profile_path(@junior_profile) %> |
+<%= link_to 'Back', junior_profiles_path %>

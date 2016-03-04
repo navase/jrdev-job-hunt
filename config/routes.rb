@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root 'company_profiles#index'
   resources :company_profiles
   devise_for :companies
+  devise_for :juniors
+  resources :junior_profiles
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

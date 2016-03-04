@@ -1,6 +1,7 @@
 class JuniorProfilesController < ApplicationController
   before_action :authenticate_junior!
   before_action :set_junior_profile, only: [:show, :edit, :update, :destroy]
+  before_action :is_owner, only: [:edit, :update, :destroy]
 
   # GET /junior_profiles
   # GET /junior_profiles.json
@@ -30,7 +31,7 @@ class JuniorProfilesController < ApplicationController
 
     respond_to do |format|
       if @junior_profile.save
-        format.html { redirect_to @junior_profile, notice: 'Junior profile was successfully created.' }
+        format.html { redirect_to @junior_profile, notice: 'Your profile was successfully created.' }
         format.json { render :show, status: :created, location: @junior_profile }
       else
         format.html { render :new }
@@ -42,14 +43,18 @@ class JuniorProfilesController < ApplicationController
   # PATCH/PUT /junior_profiles/1
   # PATCH/PUT /junior_profiles/1.json
   def update
-    respond_to do |format|
-      if @junior_profile.update(junior_profile_params)
-        format.html { redirect_to @junior_profile, notice: 'Junior profile was successfully updated.' }
-        format.json { render :show, status: :ok, location: @junior_profile }
-      else
-        format.html { render :edit }
-        format.json { render json: @junior_profile.errors, status: :unprocessable_entity }
+    if @junior_profile.junior_id == current_junior.id
+      respond_to do |format|
+        if @junior_profile.update(junior_profile_params)
+          format.html { redirect_to @junior_profile, notice: 'Your profile was successfully updated.' }
+          format.json { render :show, status: :ok, location: @junior_profile }
+        else
+          format.html { render :edit }
+          format.json { render json: @junior_profile.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to @junior_profile
     end
   end
 
@@ -58,7 +63,7 @@ class JuniorProfilesController < ApplicationController
   def destroy
     @junior_profile.destroy
     respond_to do |format|
-      format.html { redirect_to junior_profiles_url, notice: 'Junior profile was successfully destroyed.' }
+      format.html { redirect_to junior_profiles_url, notice: 'Your profile was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,5 +78,9 @@ class JuniorProfilesController < ApplicationController
   def junior_profile_params
     params.require(:junior_profile).permit(:name, :city, :picture, :ruby, :rails,
     :javascript, :node, :react, :jquery, :php, :java, :net, :cplusplus, :coffeescript, :csharp)
+  end
+
+  def is_owner
+    @junior_profile.junior_id == current_junior.id
   end
 end

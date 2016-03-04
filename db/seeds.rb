@@ -5,22 +5,28 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+CompanyProfile.destroy_all
+Company.destroy_all
 
 nike=Company.create({
   email: "fake@fakenike.nl",
-  password: "11111111"
+  password: "11111111",
+  password_confirmation: "11111111"
   })
 kpn=Company.create({
   email: "kpn@fakekpn.nl",
-  password: "11111111"
+  password: "11111111",
+  password_confirmation: "11111111"
   })
 nos=Company.create({
   email: "nos@fakenos.nl",
-  password: "11111111"
+  password: "11111111",
+  password_confirmation: "11111111"
   })
 smartlight=Company.create({
   email: "smart@fakelight.nl",
-  password: "11111111"
+  password: "11111111",
+  password_confirmation: "11111111"
   })
 nike_profile=CompanyProfile.create({
   name: "Nike",

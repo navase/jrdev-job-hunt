@@ -2,23 +2,23 @@ class CompanyProfilesController < ApplicationController
 before_action :authenticate_company!, only: [:create, :update, :destroy]
 
   def index
-    @profiles = CompanyProfile.all
+    @company_profiles = CompanyProfile.all
   end
 
   def show
-    @profile = CompanyProfile.find(params[:id])
+    @company_profile = CompanyProfile.find(params[:id])
   end
 
   def new
     # new profile has to be linked to current singed in company
-    @profile = CompanyProfile.new
+    @company_profile = CompanyProfile.new
   end
 
   def create
-    @profile = CompanyProfile.new(profile_params)
-    @profile.company_id = current_company.id
-    if @profile.save
-      redirect_to @profile
+    @company_profile = CompanyProfile.new(profile_params)
+    @company_profile.company_id = current_company.id
+    if @company_profile.save
+      redirect_to @company_profile
     else
       render :new
     end

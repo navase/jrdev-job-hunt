@@ -1,11 +1,11 @@
-<% @profiles.each do |profile| %>
+<% @company_profiles.each do |company_profile| %>
 
-  <h2><%= link_to profile.name, profile %></h2>
-  <p><%=  profile.description %></p>
+  <h2><%= link_to company_profile.name, company_profile %></h2>
+  <p><%=  company_profile.description %></p>
   <ul>
-    <li>Salary indication: <%= profile.salary_indication %></li>
-    <li>Size: <%= profile.size %></li>
-    <li>Jr/Sr ratio: <%= profile.jr_sr_ratio %></li>
+    <li>Salary indication: <%= company_profile.salary_indication %></li>
+    <li>Size: <%= company_profile.size %></li>
+    <li>Jr/Sr ratio: <%= company_profile.jr_sr_ratio %></li>
   </ul>
 
 <% end %>

@@ -1,0 +1,17 @@
+<%= form_for(@junior_profile) do |f| %>
+  <% if @junior_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@junior_profile.errors.count, "error") %> prohibited this junior_profile from being saved:</h2>
+
+      <ul>
+      <% @junior_profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -6,25 +6,57 @@ before_action :authenticate_company!, only: [:create, :update, :destroy]
   end
 
   def show
-    @company_profile = CompanyProfile.find(params[:id])
+    company_profile = CompanyProfile.find(params[:id])
+    render json:{
+        company_profile: company_profile
+    }
   end
 
-  def new
-    # new profile has to be linked to current singed in company
-    @company_profile = CompanyProfile.new
-  end
+  # def new
+  #   # new profile has to be linked to current singed in company
+  #   @company_profile = CompanyProfile.new
+  # end
 
   def create
-    @company_profile = CompanyProfile.new(profile_params)
-    @company_profile.company_id = current_company.id
-    if @company_profile.save
-      redirect_to @company_profile
+    company_profile = CompanyProfile.new(profile_params)
+    company_profile.company_id = current_company.id
+
+    if company_profile.save
+      render json: { company_profile: company_profile }
     else
-      render :new
+      render json: {
+        message: "Could not create your profile",
+        errors: comany_profile.errors,
+      }, status: :unprocessible_entity
     end
   end
 
+  def update
+      company_profile = CompanyProfile.find(params[:id])
+      company_profile.company_id = current_company.id
 
+      if company_profile.update(profile_params)
+        render json: { company_profile: company_profile }
+      else
+        render json: {
+          message: "Could not update your profile",
+          errors: company_profile.errors,
+        }, status: :unprocessible_entity
+      end
+    end
+
+    def destroy
+      company_profile = CompanyProfile.find(params[:id])
+      company_profile.company_id = current_company.id
+
+      if company_profile.destroy
+        render json: { company_profile: nil }
+      else
+        render json: {
+          message: "Could not destroy your profile, please try again",
+        }, status: :unprocessible_entity
+      end
+    end
   private
 
   def profile_params

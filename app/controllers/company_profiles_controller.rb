@@ -12,11 +12,12 @@ before_action :authenticate_company!, only: [:create, :update, :destroy]
   def new
     # new profile has to be linked to current singed in company
     @profile = CompanyProfile.new
-    @profile.company_id = current_company
   end
 
   def create
-    if @profile = CompanyProfile.create(profile_params)
+    @profile = CompanyProfile.new(profile_params)
+    @profile.company_id = current_company.id
+    if @profile.save
       redirect_to @profile
     else
       render :new

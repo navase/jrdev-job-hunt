@@ -1,0 +1,14 @@
+<h1>Complete your profile</h1>
+<%= form_for(@profile) do |f| %>
+  <%= f.label :name  %>
+  <%= f.text_field :name %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.label :size %>
+  <%= f.text_field :size %>
+  <%= f.label :salary_indication %>
+  <%= f.text_field :salary_indication %>
+  <%= f.label :jr_sr_ratio %>
+  <%= f.text_field :jr_sr_ratio %>
+  <%= f.submit "Update" %>
+<% end %>

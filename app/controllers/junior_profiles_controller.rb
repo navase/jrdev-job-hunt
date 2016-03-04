@@ -28,18 +28,24 @@ class JuniorProfilesController < ApplicationController
   end
 
   def update
-    if @junior_profile.update(junior_profile_params)
-      render json: {
-        junior_profile: @junior_profile
-      }
+    if @junior_profile.junior_id == current_junior.id
+      if @junior_profile.update(junior_profile_params)
+        render json: {
+          junior_profile: @junior_profile
+        }
+      end
+    else
+      redirect_to @junior_profile
     end
   end
 
   def destroy
-    @junior_profile.destroy
-    render json: {
-
-    }
+    if @junior_profile.junior_id == current_junior.id
+      @junior_profile.destroy
+      render json: {
+        junior_profile: nil
+      }
+    end
   end
 
   private

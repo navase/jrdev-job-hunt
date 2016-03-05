@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304110752) do
+ActiveRecord::Schema.define(version: 20160305111558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20160304110752) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
+
+  create_table "connects", force: :cascade do |t|
+    t.integer  "junior_id"
+    t.integer  "company_profile_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "connects", ["company_profile_id"], name: "index_connects_on_company_profile_id", using: :btree
+  add_index "connects", ["junior_id"], name: "index_connects_on_junior_id", using: :btree
 
   create_table "junior_profiles", force: :cascade do |t|
     t.string   "name"
@@ -48,4 +58,6 @@ ActiveRecord::Schema.define(version: 20160304110752) do
     t.datetime "updated_at",                   null: false
   end
 
+  add_foreign_key "connects", "company_profiles"
+  add_foreign_key "connects", "juniors"
 end

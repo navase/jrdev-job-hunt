@@ -10,6 +10,7 @@ class CompanyProfilesController < ApplicationController
   end
 
   def show
+    company_profile = CompanyProfile.find(params[:id])
     render json:{
         company_profile: company_profile
     }

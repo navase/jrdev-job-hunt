@@ -1,5 +1,7 @@
 class CompanyProfile < ActiveRecord::Base
   belongs_to :company
+  has_many :connects
+
   validates              :size,
                          :salary_indication,
                          presence: true
@@ -16,7 +18,5 @@ class CompanyProfile < ActiveRecord::Base
                          in: ["< 2000", "2000 - 2200", "2200 - 2400", "2400 - 2600", "2600 - 2800", "2800 - 3000"],
                          allow_blank: false,
                          message: "Invalid input for salary indication."
-
-
 
 end

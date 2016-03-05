@@ -5,4 +5,5 @@ class Junior < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :junior_profile
+  has_many :connects
 end

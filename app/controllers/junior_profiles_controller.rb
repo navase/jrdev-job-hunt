@@ -17,7 +17,7 @@ class JuniorProfilesController < ApplicationController
   def show
     junior_profile = JuniorProfile.find(params[:id])
     render json: {
-      junior_profile: junior_profile
+      junior_profile: junior_profile.as_json({include: :connects})
     }
   end
 

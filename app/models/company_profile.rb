@@ -1,5 +1,6 @@
 class CompanyProfile < ActiveRecord::Base
   has_many :connects
+  has_many :company_profiles
 
   validates              :size,
                          :salary_indication,

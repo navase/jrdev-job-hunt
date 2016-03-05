@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root 'company_profiles#index'
-  devise_for :companies
-  resources :companies, only: [:index, :show]
+  # devise_for :companies
+  resources :companies
   resources :company_profiles
 
-  devise_for :juniors
-  resources :juniors, only: [:index, :show]
+  # devise_for :juniors
+  resources :juniors
   resources :junior_profiles
 
 

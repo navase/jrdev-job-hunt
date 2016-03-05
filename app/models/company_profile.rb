@@ -1,8 +1,9 @@
 class CompanyProfile < ActiveRecord::Base
-  belongs_to :company
   validates              :size,
                          :salary_indication,
                          presence: true
+  validates_presence_of  :email,
+                         message: "Email cannot be empty."
   validates_presence_of  :name,
                          message: "Name cannot be empty."
   validates_presence_of  :description,

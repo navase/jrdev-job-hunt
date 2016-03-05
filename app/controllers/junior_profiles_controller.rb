@@ -1,5 +1,4 @@
 class JuniorProfilesController < ApplicationController
-  before_action :authenticate_junior!
   before_action :set_junior_profile, only: [:show, :edit, :update, :destroy]
 
   def index

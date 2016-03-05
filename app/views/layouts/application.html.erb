@@ -4,16 +4,11 @@
   <title>JrdevjobhuntBack</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
 </head>
 <body>
   <nav>
     <%= link_to "Home", root_path %>
-    <% if company_signed_in? %>
-    <%= link_to "Your Account", company_path(current_company) %>
-    <% elsif junior_signed_in? %>
-    <%= link_to "Your Account", junior_path(current_junior) %>
-    <% end %>
+    <%= link_to "My Profile", current_junior_path(current_junior_profile) %>
   </nav>
 <p id="notice"><%= notice %></p>
 <%= yield %>

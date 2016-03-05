@@ -1,6 +1,6 @@
 <% @company_profiles.each do |company_profile| %>
 
-  <h2><%= link_to company_profile.name, "http://localhost:3000/company_profiles/#{company_profile.id}" %></h2>
+  <h2><%= link_to company_profile.name, company_profile_path(company_profile) %></h2>
   <p><%=  company_profile.description %></p>
   <ul>
     <li>Salary indication: <%= company_profile.salary_indication %></li>

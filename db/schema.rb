@@ -16,24 +16,6 @@ ActiveRecord::Schema.define(version: 20160305111558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "companies", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
-  add_index "companies", ["email"], name: "index_companies_on_email", unique: true, using: :btree
-  add_index "companies", ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true, using: :btree
-
   create_table "company_profiles", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -74,30 +56,8 @@ ActiveRecord::Schema.define(version: 20160305111558) do
     t.boolean  "csharp",       default: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.integer  "junior_id"
   end
-
-  add_index "junior_profiles", ["junior_id"], name: "index_junior_profiles_on_junior_id", using: :btree
-
-  create_table "juniors", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
-  add_index "juniors", ["email"], name: "index_juniors_on_email", unique: true, using: :btree
-  add_index "juniors", ["reset_password_token"], name: "index_juniors_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "connects", "company_profiles"
   add_foreign_key "connects", "juniors"
-  add_foreign_key "junior_profiles", "juniors"
 end

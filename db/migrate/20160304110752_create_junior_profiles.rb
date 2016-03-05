@@ -2,6 +2,7 @@ class CreateJuniorProfiles < ActiveRecord::Migration
   def change
     create_table :junior_profiles do |t|
       t.string :name
+      t.string :email
       t.string :city
       t.string :picture
       t.boolean :ruby, default: false

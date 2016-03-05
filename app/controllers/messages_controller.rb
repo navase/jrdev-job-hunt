@@ -37,4 +37,3 @@ class MessagesController < ApplicationController
     params.require(:message).permit(:junior_profile, :company_profile)
   end
 end
-end

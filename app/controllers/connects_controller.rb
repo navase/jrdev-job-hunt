@@ -1,21 +1,34 @@
 class ConnectsController < ApplicationController
-  def create
-    @company_profile = Company_profile.find(params[:company_profile_id])
-    @connect = Connect.new
-    @connect.user = current_user
-    @connect.company_profile = @company_profile
+  before_action :set_junior_profile
 
-    if @connect.save
-      respond_to do |format|
-        format.html { redirect_to @company_profile, notice: "Thanks for your connect!" }
-        format.json { render json: { connects: @company_profile.connects.count } }
-      end
+  def index
+    render json: {
+      meta: {
+        count: junior_profile.connects.count,
+        page: 0
+      },
+      connects: junior_profile.connects.order(:company_profile)
+    }
+  end
+
+  def create
+    if connect = junior_profile.connects.create(connect_params)
+      render json: { connect: connect }
     else
-      respond_to do |format|
-        format.html { redirect_to @company_profile, alert: "Awwwhh snap! No connects for the connects of you." }
-        format.json { render json: { errors: @connect.errors }, status: :unprocessable_entity }
-      end
+      render json: {
+        message: "Could not create connect",
+        errors: connect.errors,
+      }, status: :unprocessible_entity
     end
   end
-end
+
+  private
+
+  def set_junior_profile
+    junior_profile = JuniorProfile.find(params[:junior_profile_id])
+  end
+
+  def connect_params
+    params.require(:connect).permit(:junior_profile, :company_profile)
+  end
 end

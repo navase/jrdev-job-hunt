@@ -1,4 +1,5 @@
 class CompanyProfilesController < ApplicationController
+  before_action :set_company_profile
 
   def index
     @company_profiles = CompanyProfile.all
@@ -10,7 +11,6 @@ class CompanyProfilesController < ApplicationController
   end
 
   def show
-    company_profile = CompanyProfile.find(params[:id])
     render json:{
         company_profile: company_profile
     }
@@ -22,10 +22,7 @@ class CompanyProfilesController < ApplicationController
   # end
 
   def create
-    company_profile = CompanyProfile.new(profile_params)
-    company_profile.company_id = current_company.id
-
-    if company_profile.save
+    if company_profile.create(profile_params)
       render json: { company_profile: company_profile }
     else
       render json: {
@@ -36,9 +33,6 @@ class CompanyProfilesController < ApplicationController
   end
 
   def update
-      company_profile = CompanyProfile.find(params[:id])
-      company_profile.company_id = current_company.id
-
       if company_profile.update(profile_params)
         render json: { company_profile: company_profile }
       else
@@ -50,9 +44,6 @@ class CompanyProfilesController < ApplicationController
     end
 
     def destroy
-      company_profile = CompanyProfile.find(params[:id])
-      company_profile.company_id = current_company.id
-
       if company_profile.destroy
         render json: { company_profile: nil }
       else
@@ -61,9 +52,15 @@ class CompanyProfilesController < ApplicationController
         }, status: :unprocessible_entity
       end
     end
+
   private
+
+  def set_company_profile
+    company_profile = CompanyProfile.find(params[:id])
+  end
 
   def profile_params
     params.require(:company_profile).permit(:name, :description, :size, :salary_indication, :jr_sr_ratio, :company_id )
   end
+
 end

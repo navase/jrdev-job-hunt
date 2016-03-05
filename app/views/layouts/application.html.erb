@@ -8,7 +8,7 @@
 <body>
   <nav>
     <%= link_to "Home", root_path %>
-
+    <%= link_to "My Profile", junior_profile_path(current_junior_profile) %>
   </nav>
 <p id="notice"><%= notice %></p>
 <%= yield %>

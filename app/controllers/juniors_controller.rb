@@ -1,14 +1,14 @@
 class JuniorsController < ApplicationController
 
   def index
-    juniors = Juniors.all
+    juniors = Junior.all
 
     render json:{
       meta: {
         juniors_count: juniors.count,
         page: 0
       },
-      juniors: juniors.as_json({include: :junior_profiles})
+      juniors: juniors.as_json({include: :junior_profile})
     }
   end
 

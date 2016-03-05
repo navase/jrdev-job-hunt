@@ -3,6 +3,11 @@ before_action :authenticate_company!, only: [:create, :update, :destroy]
 
   def index
     @company_profiles = CompanyProfile.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @company_profiles }
+    end
   end
 
   def show

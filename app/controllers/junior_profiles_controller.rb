@@ -1,5 +1,4 @@
 class JuniorProfilesController < ApplicationController
-  before_action :set_junior_profile, only: [:show, :edit, :update, :destroy]
 
   def index
     junior_profiles = JuniorProfile.all
@@ -10,12 +9,14 @@ class JuniorProfilesController < ApplicationController
   end
 
   def show
+    junior_profile = JuniorProfile.find(params[:id])
     render json: {
       junior_profile: junior_profile
     }
   end
 
   def create
+    junior_profile = JuniorProfile.find(params[:id])
     if junior_profile.create(junior_profile_params)
       render json: {
         junior_profile: junior_profile
@@ -29,6 +30,7 @@ class JuniorProfilesController < ApplicationController
   end
 
   def update
+    junior_profile = JuniorProfile.find(params[:id])
       if junior_profile.update(junior_profile_params)
         render json: {
           junior_profile: junior_profile
@@ -42,6 +44,7 @@ class JuniorProfilesController < ApplicationController
   end
 
   def destroy
+    junior_profile = JuniorProfile.find(params[:id])
     if junior_profile.destroy
       render json: { junior_profile: nil }
     else
@@ -52,9 +55,6 @@ class JuniorProfilesController < ApplicationController
   end
 
   private
-  def set_junior_profile
-    junior_profile = JuniorProfile.find(params[:id])
-  end
 
   def junior_profile_params
     params.require(:junior_profile).permit(:name, :city, :picture, :ruby, :rails,

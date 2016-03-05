@@ -1,5 +1,4 @@
 class CompanyProfilesController < ApplicationController
-  before_action :set_company_profile
 
   def index
     @company_profiles = CompanyProfile.all
@@ -22,6 +21,7 @@ class CompanyProfilesController < ApplicationController
   # end
 
   def create
+    company_profile = CompanyProfile.find(params[:id])
     if company_profile.create(profile_params)
       render json: { company_profile: company_profile }
     else
@@ -33,6 +33,7 @@ class CompanyProfilesController < ApplicationController
   end
 
   def update
+    company_profile = CompanyProfile.find(params[:id])
       if company_profile.update(profile_params)
         render json: { company_profile: company_profile }
       else
@@ -44,6 +45,7 @@ class CompanyProfilesController < ApplicationController
     end
 
     def destroy
+      company_profile = CompanyProfile.find(params[:id])
       if company_profile.destroy
         render json: { company_profile: nil }
       else
@@ -54,10 +56,6 @@ class CompanyProfilesController < ApplicationController
     end
 
   private
-
-  def set_company_profile
-    company_profile = CompanyProfile.find(params[:id])
-  end
 
   def profile_params
     params.require(:company_profile).permit(:name, :description, :size, :salary_indication, :jr_sr_ratio, :company_id )

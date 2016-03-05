@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   root 'company_profiles#index'
   # devise_for :companies
-  resources :companies
+  # resources :companies
   resources :company_profiles
 
   # devise_for :juniors
-  resources :juniors
+  # resources :juniors
   resources :junior_profiles
+  get 'junior_profiles/:id', :to => 'junior_profiles#current', as: :current_junior
 
 
   # The priority is based upon order of creation: first created -> highest priority.

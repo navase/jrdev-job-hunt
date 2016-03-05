@@ -8,6 +8,12 @@ class JuniorProfilesController < ApplicationController
       }
   end
 
+  def current
+    render json: {
+      junior_profile: current_junior_profile
+    }
+  end
+
   def show
     junior_profile = JuniorProfile.find(params[:id])
     render json: {

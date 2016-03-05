@@ -87,7 +87,8 @@ margot_profile=JuniorProfile.create({
   javascript: true,
   node: true,
   react: true,
-  jquery: true
+  jquery: true,
+  junior_id: margot.id
 })
 iris_profile=JuniorProfile.create({
   name: "Iris Bune",
@@ -98,7 +99,8 @@ iris_profile=JuniorProfile.create({
   node: true,
   react: true,
   jquery: true,
-  php: true
+  php: true,
+  junior_id: iris.id
 })
 tom_profile=JuniorProfile.create({
   name: "Tom Dahmen",
@@ -108,5 +110,6 @@ tom_profile=JuniorProfile.create({
   javascript: true,
   node: true,
   react: true,
-  jquery: true
+  jquery: true,
+  junior_id: tom.id
 })
